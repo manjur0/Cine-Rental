@@ -1,4 +1,4 @@
-const Content = () => {
+const MovieList = () => {
   return (
     <div className="content">
       <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-7">
@@ -174,4 +174,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default MovieList;
