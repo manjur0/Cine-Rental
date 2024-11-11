@@ -1,3 +1,4 @@
+import { getMovieImage } from "../../utils/cine-utils.js";
 import { getAllMovies } from "../Data/movies.js";
 const MovieList = () => {
   const movies = getAllMovies();
@@ -12,7 +13,7 @@ const MovieList = () => {
           >
             <img
               className="w-full object-cover"
-              src="./assets/movie-1.png"
+              src={getMovieImage(movie.cover)}
               alt=""
             />
             <figcaption className="pt-4">
