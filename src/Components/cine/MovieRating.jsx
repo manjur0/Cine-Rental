@@ -1,6 +1,6 @@
 import Star from "../../assets/star.svg";
 
-export default function MovieRating({ value }) {
+const MovieRating = ({ value }) => {
   const stars = Array(value).fill(Star);
   return (
     <>
@@ -9,4 +9,6 @@ export default function MovieRating({ value }) {
       ))}
     </>
   );
-}
+};
+
+export default MovieRating;
