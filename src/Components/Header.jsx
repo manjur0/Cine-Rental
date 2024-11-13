@@ -7,20 +7,17 @@ import { useState } from "react";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
-  
+
   // cart details show
   const handleCartDetails = () => {
     setShowCart(true);
     console.log("handle cd");
   };
   // handle close cart details
-  const handleClose = () => {
-    setShowCart(false);
-  };
 
   return (
     <header>
-      {showCart && <CartDeta onClose={handleClose} />}
+      {showCart && <CartDeta onClose={() => setShowCart(false)} />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="index.html">
           <img src={Logo} width="139" height="26" alt="" />
