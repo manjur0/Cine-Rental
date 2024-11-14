@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { MovieContext } from "../../Context";
-import { getMovieImage } from "../../utils/cine-utils";
 import Delete from "../..//assets/delete.svg";
 import Checkout from "../../assets/icons//checkout.svg";
 
