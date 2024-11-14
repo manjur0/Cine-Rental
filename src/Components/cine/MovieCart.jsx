@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { getMovieImage } from "../../utils/cine-utils";
 import MovieRating from "./MovieRating";
 import MovieDetailsModal from "./MovieDetailsModal";
@@ -28,16 +29,23 @@ const MovieCart = ({ movie }) => {
     // check if the movie is already in the cart
     const found = cartData.find((item) => item.id === movie.id);
     if (!found) {
+      // hot toast
+      toast.success(movie.title + "has been added");
       return setCartData([...cartData, movie]);
     } else {
-      console.log(found.title, "already in the cart");
+      toast.error(`${found.title} already added`);
     }
   };
 
   return (
     <>
+      <Toaster position="bottom-right" reverseOrder={false} />
       {showModal && (
-        <MovieDetailsModal movie={selectedMovie} onClose={handleModalClose} />
+        <MovieDetailsModal
+          movie={selectedMovie}
+          onClose={handleModalClose}
+          onCartAdd={handleAddToCart}
+        />
       )}
       <figure
         key={movie.id}

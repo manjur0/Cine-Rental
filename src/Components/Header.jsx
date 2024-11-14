@@ -3,10 +3,13 @@ import Logo from "../assets/logo.svg";
 import Ring from "../assets/ring.svg";
 import Moon from "../assets/icons/moon.svg";
 import Cart from "../assets/shopping-cart.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MovieContext } from "../Context";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
+  const { cartData } = useContext(MovieContext);
+  const [title, genre, price, cover] = cartData; // destructure cartData here
 
   // cart details show
   const handleCartDetails = () => {
@@ -18,7 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      {showCart && <CartDeta onClose={() => setShowCart(false)} />}
+      {showCart && <CartDeta onClose={() => setShowCart(false)}  />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="index.html">
           <img src={Logo} width="139" height="26" alt="" />
@@ -48,6 +51,12 @@ const Header = () => {
               href="#"
             >
               <img src={Cart} width="24" height="24" alt="" />
+
+              {cartData.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {cartData.length}
+                </span>
+              )}
             </a>
           </li>
         </ul>
