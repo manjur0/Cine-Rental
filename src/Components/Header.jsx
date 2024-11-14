@@ -13,7 +13,6 @@ const Header = () => {
     setShowCart(true);
     console.log("handle cd");
   };
-  // handle close cart details
 
   return (
     <header>
