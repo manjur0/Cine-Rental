@@ -14,6 +14,8 @@ const Header = () => {
     console.log("handle cd");
   };
 
+  //
+
   return (
     <header>
       {showCart && <CartDeta onClose={() => setShowCart(false)} />}

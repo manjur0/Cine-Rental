@@ -18,9 +18,11 @@ const MovieCart = ({ movie }) => {
     setShowModal(true);
   };
   // add to cart handler
-  const handleAddToCart = (movie) => {
-    // add to cart logic here
-    
+  const handleAddToCart = (event, movie) => {
+    // event propagation stop
+    event.stopPropagation();
+
+    console.log(movie);
   };
 
   return (
@@ -45,7 +47,7 @@ const MovieCart = ({ movie }) => {
               <MovieRating value={movie.rating} />
             </div>
             <a
-              onClick={handleAddToCart}
+              onClick={(e) => handleAddToCart(e, movie)}
               className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
               href="#"
             >
