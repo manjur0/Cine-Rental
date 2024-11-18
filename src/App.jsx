@@ -1,24 +1,18 @@
 import { useState } from "react";
-import MovieList from "./Components/cine/MovieList";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
-import Sidebar from "./Components/Sidebar";
-import { MovieContext } from "./Context";
+
+import { MovieContext, ThemeContext } from "./Context";
+import Page from "./Page";
 
 const App = () => {
   const [cartData, setCartData] = useState([]);
+  const [darkMode, setDarkMode] = useState(true);
   return (
     <div>
-      <MovieContext.Provider value={{ cartData, setCartData }}>
-        <Header />
-        <main>
-          <div className="container grid lg:grid-cols-[218px_1fr] gap-[3.5rem]">
-            <Sidebar />
-            <MovieList />
-          </div>
-        </main>
-        <Footer />
-      </MovieContext.Provider>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+        <MovieContext.Provider value={{ cartData, setCartData }}>
+          <Page />
+        </MovieContext.Provider>
+      </ThemeContext.Provider>
     </div>
   );
 };
