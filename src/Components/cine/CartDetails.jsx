@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { MovieContext } from "../../Context";
 import Delete from "../..//assets/delete.svg";
 import Checkout from "../../assets/icons//checkout.svg";
+import { getMovieImage } from "../../utils/cine-utils";
 
 const CartDetails = ({ onClose }) => {
   const { cartData, setCartData } = useContext(MovieContext);
@@ -25,8 +26,10 @@ const CartDetails = ({ onClose }) => {
                 <div className="flex items-center gap-4">
                   <img
                     className="rounded overflow-hidden"
-                    src="/assets/cart-item.png"
-                    alt=""
+                    src={getMovieImage(movie.cover)}
+                    alt={movie.title}
+                    width={"50px"}
+                    height={"50px"}
                   />
                   <div>
                     <h3 className="text-base md:text-xl font-bold">
@@ -43,7 +46,7 @@ const CartDetails = ({ onClose }) => {
                     onClick={(e) => hanldeDeleteItem(movie.id)}
                     className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
                   >
-                    <img className="w-5 h-5" src={Delete} alt="" />
+                    <img className="w-5 h-5" src={Delete} alt="delete" />
                     <span className="max-md:hidden">Remove</span>
                   </button>
                 </div>
