@@ -8,7 +8,8 @@ const CartDetails = ({ onClose }) => {
   const { cartData, setCartData } = useContext(MovieContext);
   console.log(cartData);
 
-  const hanldeDeleteItem = (id) => {
+  const hanldeDeleteItem = (e, id) => {
+    e.preventDefault();
     const updatedCart = cartData.filter((movie) => movie.id !== id);
     setCartData(updatedCart);
   };
@@ -21,37 +22,43 @@ const CartDetails = ({ onClose }) => {
             Your Carts
           </h2>
           <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
-            {cartData.map((movie) => (
-              <div key={movie.id} className="grid grid-cols-[1fr_auto] gap-4">
-                <div className="flex items-center gap-4">
-                  <img
-                    className="rounded overflow-hidden"
-                    src={getMovieImage(movie.cover)}
-                    alt={movie.title}
-                    width={"50px"}
-                    height={"50px"}
-                  />
-                  <div>
-                    <h3 className="text-base md:text-xl font-bold">
-                      {movie.title}
-                    </h3>
-                    <p className="max-md:text-xs text-[#575A6E]">
-                      {movie.genre}
-                    </p>
-                    <span className="max-md:text-xs">${movie.price}</span>:
+            {cartData.length === 0 ? (
+              <span className="text-ellipsis overflow-hidden whitespace-nowrap block text-center text-xl font-bold text-[#575A6E]">
+                The Cart is empty
+              </span>
+            ) : (
+              cartData.map((movie) => (
+                <div key={movie.id} className="grid grid-cols-[1fr_auto] gap-4">
+                  <div className="flex items-center gap-4">
+                    <img
+                      className="rounded overflow-hidden"
+                      src={getMovieImage(movie.cover)}
+                      alt={movie.title}
+                      width={"50px"}
+                      height={"50px"}
+                    />
+                    <div>
+                      <h3 className="text-base md:text-xl font-bold">
+                        {movie.title}
+                      </h3>
+                      <p className="max-md:text-xs text-[#575A6E]">
+                        {movie.genre}
+                      </p>
+                      <span className="max-md:text-xs">${movie.price}</span>:
+                    </div>
+                  </div>
+                  <div className="flex justify-between gap-4 items-center">
+                    <button
+                      onClick={(e) => hanldeDeleteItem(e, movie.id)}
+                      className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
+                    >
+                      <img className="w-5 h-5" src={Delete} alt="delete" />
+                      <span className="max-md:hidden">Remove</span>
+                    </button>
                   </div>
                 </div>
-                <div className="flex justify-between gap-4 items-center">
-                  <button
-                    onClick={(e) => hanldeDeleteItem(movie.id)}
-                    className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
-                  >
-                    <img className="w-5 h-5" src={Delete} alt="delete" />
-                    <span className="max-md:hidden">Remove</span>
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           <div className="flex items-center justify-end gap-2">
             <a
