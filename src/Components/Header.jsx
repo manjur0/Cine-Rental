@@ -14,7 +14,11 @@ const Header = () => {
   const [title, genre, price, cover] = cartData; // destructure cartData here
 
   return (
-    <header>
+    <header
+      className={` sticky top-0  z-10 ${
+        darkMode ? "bg-[#171923e0]" : "bg-[#ffffffe0]"
+      } mb-2 `}
+    >
       {showCart && <CartDeta onClose={() => setShowCart(false)} />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="index.html">
