@@ -32,6 +32,7 @@ const Header = () => {
           </li>
           <li>
             <a
+              onClick={() => setDarkMode(!darkMode)}
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
               href="#"
             >
